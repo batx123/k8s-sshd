@@ -34,6 +34,6 @@ spec:
     spec:
       containers:
       - name: egsshd
-        image:  batx123/egsshd
+        image:  benatx123/egsshd
         ports:
         - containerPort: 22
