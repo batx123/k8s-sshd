@@ -1,0 +1,39 @@
+# This should work on Kubernetes deployments that have LoadBalancer support
+apiVersion: v1
+kind: Service
+metadata:
+  name: egsshd
+  labels:
+    app: egsshd
+    tier: frontend
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 22
+    protocol: TCP
+    targetPort: 22
+  selector:
+    app: egsshd
+    tier: frontend
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: egsshd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: egsshd
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        app: egsshd
+        tier: frontend
+    spec:
+      containers:
+      - name: egsshd
+        image:  batx123/egsshd
+        ports:
+        - containerPort: 22
