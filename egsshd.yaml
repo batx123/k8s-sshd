@@ -34,6 +34,6 @@ spec:
     spec:
       containers:
       - name: egsshd
-        image:  benatx123/egsshd
+        image:  benatx123/egsshd:firsttry
         ports:
         - containerPort: 22
